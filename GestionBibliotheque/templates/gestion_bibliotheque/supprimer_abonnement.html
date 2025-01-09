@@ -1,0 +1,17 @@
+{% extends "gestion_bibliotheque/base.html" %}
+
+{% block title %}Supprimer un Abonnement{% endblock %}
+
+{% block content %}
+<h1 class="text-center mb-4">Supprimer un Abonnement</h1>
+<div class="card">
+    <div class="card-body">
+        <p>Êtes-vous sûr de vouloir supprimer cet abonnement ?</p>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger mt-3">Supprimer</button>
+        </form>
+        <a href="{% url 'liste_abonnements' %}" class="btn btn-secondary mt-3">Retour à la liste des abonnements</a>
+    </div>
+</div>
+{% endblock %}

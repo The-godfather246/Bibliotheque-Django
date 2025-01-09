@@ -1,0 +1,17 @@
+{% extends "gestion_bibliotheque/base.html" %}
+
+{% block title %}Ajouter un Livre{% endblock %}
+
+{% block content %}
+<h1 class="text-center mb-4">Ajouter un Livre</h1>
+<div class="card">
+    <div class="card-body">
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-success mt-3">Ajouter</button>
+        </form>
+        <a href="{% url 'liste_livres' %}" class="btn btn-secondary mt-3">Retour à la liste des livres</a>
+    </div>
+</div>
+{% endblock %}

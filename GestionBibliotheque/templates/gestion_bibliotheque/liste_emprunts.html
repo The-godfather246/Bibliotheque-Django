@@ -1,0 +1,17 @@
+{% extends "gestion_bibliotheque/base.html" %}
+
+{% block title %}Liste des Emprunts{% endblock %}
+
+{% block content %}
+<h1 class="text-center mb-4">Liste des Emprunts</h1>
+<div class="card">
+    <div class="card-body">
+        <ul class="list-group list-group-flush">
+            {% for emprunt in emprunts %}
+                <li class="list-group-item">{{ emprunt.livre.titre }} emprunté par {{ emprunt.membre.nom }} {{ emprunt.membre.prenom }} ({{ emprunt.statut }})</li>
+            {% endfor %}
+        </ul>
+        <a href="{% url 'ajouter_emprunt' %}" class="btn btn-primary mt-3">Ajouter un Emprunt</a>
+    </div>
+</div>
+{% endblock %}

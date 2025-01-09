@@ -1,0 +1,17 @@
+{% extends "gestion_bibliotheque/base.html" %}
+
+{% block title %}Liste des Abonnements{% endblock %}
+
+{% block content %}
+<h1 class="text-center mb-4">Liste des Abonnements</h1>
+<div class="card">
+    <div class="card-body">
+        <ul class="list-group list-group-flush">
+            {% for abonnement in abonnements %}
+                <li class="list-group-item">{{ abonnement.type }} ({{ abonnement.duree }} jours, {{ abonnement.cout }} €)</li>
+            {% endfor %}
+        </ul>
+        <a href="{% url 'ajouter_abonnement' %}" class="btn btn-primary mt-3">Ajouter un Abonnement</a>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends "gestion_bibliotheque/base.html" %}
+
+{% block title %}Tableau de Bord{% endblock %}
+
+{% block content %}
+<h1 class="text-center mb-4">Tableau de Bord</h1>
+<div class="row">
+    <div class="col-md-6">
+        <div class="card mb-4">
+            <div class="card-body">
+                <h5 class="card-title">Statistiques Générales</h5>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Nombre total de livres : {{ total_livres }}</li>
+                    <li class="list-group-item">Nombre d'abonnements actifs : {{ abonnements_actifs }}</li>
+                    <li class="list-group-item">Livres empruntés : {{ livres_empruntes }}</li>
+                    <li class="list-group-item">Retours en attente : {{ retours_en_attente }}</li>
+                    <li class="list-group-item">Membres actifs : {{ membres_actifs }}</li>
+                    <li class="list-group-item">Membres inactifs : {{ membres_inactifs }}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card mb-4">
+            <div class="card-body">
+                <h5 class="card-title">Statistiques Mensuelles sur les Emprunts</h5>
+                <p>{{ statistiques_emprunts|length }} emprunts ce mois-ci.</p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Abonnements Renouvelés ou Expirés</h5>
+                <p>Abonnements renouvelés : {{ abonnements_renouveles|length }}</p>
+                <p>Abonnements expirés : {{ abonnements_expirés|length }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

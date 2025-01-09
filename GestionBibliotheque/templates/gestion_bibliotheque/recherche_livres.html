@@ -1,0 +1,24 @@
+{% extends "gestion_bibliotheque/base.html" %}
+
+{% block title %}Recherche de Livres{% endblock %}
+
+{% block content %}
+<h1 class="text-center mb-4">Recherche de Livres</h1>
+<div class="card">
+    <div class="card-body">
+        <form method="get">
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" name="q" placeholder="Rechercher par titre, auteur, catégorie ou ISBN">
+                <div class="input-group-append">
+                    <button class="btn btn-primary" type="submit">Rechercher</button>
+                </div>
+            </div>
+        </form>
+        <ul class="list-group list-group-flush">
+            {% for livre in livres %}
+                <li class="list-group-item">{{ livre.titre }} par {{ livre.auteur }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endblock %}

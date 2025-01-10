@@ -3,14 +3,74 @@
 {% block title %}Rapports{% endblock %}
 
 {% block content %}
-<h1 class="text-center mb-4">Rapports</h1>
-<div class="card">
-    <div class="card-body">
-        <h2>Statistiques Mensuelles sur les Emprunts</h2>
-        <p>{{ statistiques_emprunts|length }} emprunts ce mois-ci.</p>
-        <h2>Abonnements Renouvelés ou Expirés</h2>
-        <p>Abonnements renouvelés : {{ abonnements_renouveles|length }}</p>
-        <p>Abonnements expirés : {{ abonnements_expirés|length }}</p>
+<div class="container mt-5">
+    <div class="row mb-4">
+        <div class="col-12">
+            <h1 class="display-4 text-primary text-center">
+                <i class="fas fa-chart-pie me-3"></i>Rapports
+            </h1>
+            <hr class="mb-4">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6 mb-4">
+            <div class="card shadow-sm">
+                <div class="card-header bg-info text-white">
+                    <h5 class="card-title mb-0">
+                        <i class="fas fa-calendar-alt me-2"></i>Statistiques Mensuelles sur les Emprunts
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <h6 class="text-muted">Emprunts ce mois-ci</h6>
+                    <h3 class="text-primary">{{ statistiques_emprunts|length }}</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 mb-4">
+            <div class="card shadow-sm">
+                <div class="card-header bg-success text-white">
+                    <h5 class="card-title mb-0">
+                        <i class="fas fa-sync-alt me-2"></i>Abonnements Renouvelés ou Expirés
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <h6 class="text-muted">Abonnements renouvelés</h6>
+                        <h3 class="text-success">{{ abonnements_renouveles|length }}</h3>
+                    </div>
+                    <div>
+                        <h6 class="text-muted">Abonnements expirés</h6>
+                        <h3 class="text-danger">{{ abonnements_expirés|length }}</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
+
+<style>
+.card {
+    transition: all 0.3s ease;
+    border: 1px solid rgba(0,0,0,0.1);
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+}
+
+h1 {
+    font-weight: bold;
+}
+
+h3 {
+    font-size: 2rem;
+}
+
+.card-header {
+    font-weight: bold;
+}
+</style>
 {% endblock %}

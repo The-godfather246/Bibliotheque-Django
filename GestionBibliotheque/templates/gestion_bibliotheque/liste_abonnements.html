@@ -3,15 +3,72 @@
 {% block title %}Liste des Abonnements{% endblock %}
 
 {% block content %}
-<h1 class="text-center mb-4">Liste des Abonnements</h1>
-<div class="card">
-    <div class="card-body">
-        <ul class="list-group list-group-flush">
-            {% for abonnement in abonnements %}
-                <li class="list-group-item">{{ abonnement.type }} ({{ abonnement.duree }} jours, {{ abonnement.cout }} €)</li>
-            {% endfor %}
-        </ul>
-        <a href="{% url 'ajouter_abonnement' %}" class="btn btn-primary mt-3">Ajouter un Abonnement</a>
+<div class="container mt-5">
+    <div class="row mb-4">
+        <div class="col-12">
+            <h1 class="display-4 text-primary text-center">
+                <i class="fas fa-list me-3"></i>Liste des Abonnements
+            </h1>
+            <hr class="mb-4">
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <ul class="list-group list-group-flush">
+                        {% for abonnement in abonnements %}
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <span>
+                                    <strong>{{ abonnement.type }}</strong> ({{ abonnement.duree }} jours, {{ abonnement.cout }} €)
+                                </span>
+                                <div>
+                                    <a href="{% url 'modifier_abonnement' abonnement.id %}" class="btn btn-warning btn-sm me-2">
+                                        <i class="fas fa-edit me-2"></i>Modifier
+                                    </a>
+                                    <a href="{% url 'supprimer_abonnement' abonnement.id %}" class="btn btn-danger btn-sm" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet abonnement ?');">
+                                        <i class="fas fa-trash me-2"></i>Supprimer
+                                    </a>
+                                </div>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                    <a href="{% url 'ajouter_abonnement' %}" class="btn btn-primary mt-3">
+                        <i class="fas fa-plus me-2"></i>Ajouter un Abonnement
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
+
+<style>
+.card {
+    transition: all 0.3s ease;
+    border: 1px solid rgba(0,0,0,0.1);
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+}
+
+.list-group-item {
+    transition: all 0.3s ease;
+}
+
+.list-group-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+button.btn {
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+button.btn:hover {
+    transform: translateY(-2px);
+}
+</style>
 {% endblock %}

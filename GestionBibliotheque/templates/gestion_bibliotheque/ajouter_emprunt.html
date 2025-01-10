@@ -3,15 +3,57 @@
 {% block title %}Ajouter un Emprunt{% endblock %}
 
 {% block content %}
-<h1 class="text-center mb-4">Ajouter un Emprunt</h1>
-<div class="card">
-    <div class="card-body">
-        <form method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit" class="btn btn-success mt-3">Ajouter</button>
-        </form>
-        <a href="{% url 'liste_emprunts' %}" class="btn btn-secondary mt-3">Retour à la liste des emprunts</a>
+<div class="container mt-5">
+    <div class="row mb-4">
+        <div class="col-12">
+            <h1 class="display-4 text-primary text-center">
+                <i class="fas fa-book-reader me-3"></i>Ajouter un Emprunt
+            </h1>
+            <hr class="mb-4">
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <form method="post" class="p-3">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            {{ form.as_p }}
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <a href="{% url 'liste_emprunts' %}" class="btn btn-secondary">
+                                <i class="fas fa-arrow-left me-2"></i>Retour
+                            </a>
+                            <button type="submit" class="btn btn-success">
+                                <i class="fas fa-save me-2"></i>Ajouter
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
+
+<style>
+.card {
+    transition: all 0.3s ease;
+    border: 1px solid rgba(0,0,0,0.1);
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+}
+
+button.btn {
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+button.btn:hover {
+    transform: translateY(-2px);
+}
+</style>
 {% endblock %}

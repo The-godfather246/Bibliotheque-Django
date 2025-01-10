@@ -3,15 +3,67 @@
 {% block title %}Modifier un Emprunt{% endblock %}
 
 {% block content %}
-<h1 class="text-center mb-4">Modifier un Emprunt</h1>
-<div class="card">
-    <div class="card-body">
-        <form method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit" class="btn btn-primary mt-3">Modifier</button>
-        </form>
-        <a href="{% url 'liste_emprunts' %}" class="btn btn-secondary mt-3">Retour à la liste des emprunts</a>
+<div class="container mt-5">
+    <div class="row mb-4">
+        <div class="col-12">
+            <h1 class="display-4 text-primary text-center">
+                <i class="fas fa-edit me-3"></i>Modifier un Emprunt
+            </h1>
+            <hr class="mb-4">
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            {{ form.as_p }}
+                        </div>
+                        <button type="submit" class="btn btn-success mt-3">
+                            <i class="fas fa-save me-2"></i>Modifier l'Emprunt
+                        </button>
+                    </form>
+                    <a href="{% url 'liste_emprunts' %}" class="btn btn-secondary mt-3">
+                        <i class="fas fa-arrow-left me-2"></i>Retour à la liste des emprunts
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
+
+<style>
+.card {
+    transition: all 0.3s ease;
+    border: 1px solid rgba(0,0,0,0.1);
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+}
+
+button.btn {
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+button.btn:hover {
+    transform: translateY(-2px);
+}
+
+form .form-group {
+    margin-bottom: 1.5rem;
+}
+
+form .form-control {
+    border-radius: 0.5rem;
+}
+
+h1 {
+    font-weight: bold;
+}
+</style>
 {% endblock %}

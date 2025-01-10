@@ -3,22 +3,74 @@
 {% block title %}Recherche de Livres{% endblock %}
 
 {% block content %}
-<h1 class="text-center mb-4">Recherche de Livres</h1>
-<div class="card">
-    <div class="card-body">
-        <form method="get">
-            <div class="input-group mb-3">
-                <input type="text" class="form-control" name="q" placeholder="Rechercher par titre, auteur, catégorie ou ISBN">
-                <div class="input-group-append">
-                    <button class="btn btn-primary" type="submit">Rechercher</button>
+<div class="container mt-5">
+    <div class="row mb-4">
+        <div class="col-12">
+            <h1 class="display-4 text-primary text-center">
+                <i class="fas fa-search me-3"></i>Recherche de Livres
+            </h1>
+            <hr class="mb-4">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <form method="get">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" name="q" placeholder="Rechercher par titre, auteur, catégorie ou ISBN">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="submit">
+                                    <i class="fas fa-search me-2"></i>Rechercher
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                    {% if livres %}
+                        <ul class="list-group list-group-flush">
+                            {% for livre in livres %}
+                                <li class="list-group-item">
+                                    <strong>{{ livre.titre }}</strong> par {{ livre.auteur }}
+                                    <div class="text-muted small">Catégorie: {{ livre.categorie }} | ISBN: {{ livre.isbn }}</div>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        <div class="alert alert-info mt-3">
+                            Aucune correspondance trouvée pour votre recherche.
+                        </div>
+                    {% endif %}
                 </div>
             </div>
-        </form>
-        <ul class="list-group list-group-flush">
-            {% for livre in livres %}
-                <li class="list-group-item">{{ livre.titre }} par {{ livre.auteur }}</li>
-            {% endfor %}
-        </ul>
+        </div>
     </div>
 </div>
+
+<style>
+.card {
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+}
+
+h1 {
+    font-weight: bold;
+}
+
+h3 {
+    font-size: 2rem;
+}
+
+.list-group-item {
+    font-size: 1.1rem;
+}
+
+.alert {
+    text-align: center;
+}
+</style>
 {% endblock %}

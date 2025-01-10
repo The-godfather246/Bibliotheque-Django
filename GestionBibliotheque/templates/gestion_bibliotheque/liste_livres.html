@@ -3,15 +3,43 @@
 {% block title %}Liste des Livres{% endblock %}
 
 {% block content %}
-<h1 class="text-center mb-4">Liste des Livres</h1>
-<div class="card">
-    <div class="card-body">
-        <ul class="list-group list-group-flush">
-            {% for livre in livres %}
-                <li class="list-group-item">{{ livre.titre }} par {{ livre.auteur }} ({{ livre.quantite_disponible }} disponibles)</li>
-            {% endfor %}
-        </ul>
-        <a href="{% url 'ajouter_livre' %}" class="btn btn-primary mt-3">Ajouter un Livre</a>
+<div class="container mt-5">
+    <div class="row mb-4">
+        <div class="col-12">
+            <h1 class="display-4 text-primary mb-3">
+                <i class="fas fa-book me-3"></i>Liste des Livres
+            </h1>
+            <hr class="mb-4">
+        </div>
+    </div>
+
+    <div class="row">
+        {% for livre in livres %}
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title text-primary">{{ livre.titre }}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Par {{ livre.auteur }}</h6>
+                    <p class="card-text text-muted">
+                        <strong>Genre :</strong> {{ livre.genre }}<br>
+                        <strong>Année :</strong> {{ livre.annee }}
+                    </p>
+                    <div class="d-flex justify-content-between">
+                        <a href="{% url 'modifier_livre' livre.id %}" class="btn btn-warning btn-sm">
+                            <i class="fas fa-edit me-2"></i>Modifier
+                        </a>
+                        <a href="{% url 'supprimer_livre' livre.id %}" class="btn btn-danger btn-sm" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce livre ?');">
+                            <i class="fas fa-trash me-2"></i>Supprimer
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="d-flex justify-content-center mt-4">
+        {{ pagination }}
     </div>
 </div>
 {% endblock %}

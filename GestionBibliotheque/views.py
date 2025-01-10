@@ -149,6 +149,7 @@ from .models import Livre, Membre, Abonnement, Emprunt
 from django.utils import timezone
 
 def tableau_de_bord(request):
+    # Récupération des statistiques de base
     total_livres = Livre.objects.count()
     abonnements_actifs = Membre.objects.filter(abonnement__isnull=False).count()
     livres_empruntes = Emprunt.objects.filter(statut='en cours').count()
@@ -156,9 +157,19 @@ def tableau_de_bord(request):
     membres_actifs = Membre.objects.filter(abonnement__isnull=False).count()
     membres_inactifs = Membre.objects.filter(abonnement__isnull=True).count()
 
+    # Statistiques mensuelles
     statistiques_emprunts = Emprunt.objects.filter(date_emprunt__month=timezone.now().month)
     abonnements_renouveles = Abonnement.objects.filter(date_renouvellement__month=timezone.now().month)
     abonnements_expirés = Abonnement.objects.filter(date_expiration__month=timezone.now().month)
+
+    # Calcul des pourcentages pour la barre de progression
+    total_membres = membres_actifs + membres_inactifs
+    if total_membres > 0:
+        pourcentage_actifs = int((membres_actifs / total_membres) * 100)
+        pourcentage_inactifs = 100 - pourcentage_actifs
+    else:
+        pourcentage_actifs = 0
+        pourcentage_inactifs = 0
 
     return render(request, 'gestion_bibliotheque/tableau_de_bord.html', {
         'total_livres': total_livres,
@@ -170,8 +181,10 @@ def tableau_de_bord(request):
         'statistiques_emprunts': statistiques_emprunts,
         'abonnements_renouveles': abonnements_renouveles,
         'abonnements_expirés': abonnements_expirés,
+        # Ajout des pourcentages calculés
+        'pourcentage_actifs': pourcentage_actifs,
+        'pourcentage_inactifs': pourcentage_inactifs,
     })
-
 
 # Vue pour les rapports
 def rapports(request):

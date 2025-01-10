@@ -3,15 +3,60 @@
 {% block title %}Supprimer un Emprunt{% endblock %}
 
 {% block content %}
-<h1 class="text-center mb-4">Supprimer un Emprunt</h1>
-<div class="card">
-    <div class="card-body">
-        <p>Êtes-vous sûr de vouloir supprimer cet emprunt ?</p>
-        <form method="post">
-            {% csrf_token %}
-            <button type="submit" class="btn btn-danger mt-3">Supprimer</button>
-        </form>
-        <a href="{% url 'liste_emprunts' %}" class="btn btn-secondary mt-3">Retour à la liste des emprunts</a>
+<div class="container mt-5">
+    <div class="row mb-4">
+        <div class="col-12">
+            <h1 class="display-4 text-danger text-center">
+                <i class="fas fa-trash-alt me-3"></i>Supprimer un Emprunt
+            </h1>
+            <hr class="mb-4">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6 mx-auto">
+            <div class="card shadow-sm">
+                <div class="card-body text-center">
+                    <p class="text-warning mb-4">
+                        <strong>Attention :</strong> Êtes-vous sûr de vouloir supprimer cet emprunt ? Cette action est irréversible.
+                    </p>
+                    <form method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger btn-lg">
+                            <i class="fas fa-trash-alt me-2"></i>Supprimer cet Emprunt
+                        </button>
+                    </form>
+                    <a href="{% url 'liste_emprunts' %}" class="btn btn-secondary btn-lg mt-3">Retour à la liste des emprunts</a>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
+
+<style>
+.card {
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+}
+
+h1 {
+    font-weight: bold;
+}
+
+.text-warning {
+    font-size: 1.1rem;
+}
+
+.btn-lg {
+    font-size: 1.2rem;
+}
+
+.alert {
+    text-align: center;
+}
+</style>
 {% endblock %}

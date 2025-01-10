@@ -37,7 +37,7 @@ class Abonnement(models.Model):
     date_expiration = models.DateField(null=True, blank=True)  # Ajoutez ce champ
 
     def __str__(self):
-        return f"{self.get_type_display()} ({self.duree} jours, {self.cout} €)"
+        return f"{self.get_type_display()} ({self.duree} jours, {self.cout} FCFA)"
 
 class Emprunt(models.Model):
     livre = models.ForeignKey(Livre, on_delete=models.CASCADE)
